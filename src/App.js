@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import './App.scss';
-import Calculator from './components/Calculator/Calculator';
+import CalculatorContainer from './components/Calculator/CalculatorContainer';
 import store from './redux/store';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <div className="app">
         <div className="wrapper">
           <h1 className="title">Calculator</h1>
-          <Calculator />
+          <CalculatorContainer />
         </div>
       </div>
     </Provider>
