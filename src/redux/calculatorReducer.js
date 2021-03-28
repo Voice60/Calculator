@@ -95,6 +95,7 @@ const calculatorReducer = (state = InitialState, action) => {
           sign: action.s
         }
       }
+      break
     }
     case CLEAR_ALL: {
       return {
@@ -126,7 +127,7 @@ const calculatorReducer = (state = InitialState, action) => {
           answer: answer(slicedNumber, state.sign, state.number2)
         }
       }
-
+      break
     }
     case SET_PERCENT: {
       let totalNumber = String(answer(state.number1, state.sign, state.number2) / 100)
@@ -153,6 +154,7 @@ const calculatorReducer = (state = InitialState, action) => {
           example: state.example + '.'
         }
       }
+      break
     }
     case SET_ANSWER: {
       let totalNumber = answer(state.number1, state.sign, state.number2)

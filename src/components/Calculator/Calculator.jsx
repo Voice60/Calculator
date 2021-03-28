@@ -26,19 +26,19 @@ let Calculator = ({ example, answer, addNumber, addSign, clearAll, clearLast, se
   ]
 
   let handleOnClick = (el) => {
-    if (el.type == 'number') {
+    if (el.type === 'number') {
       addNumber(el.name)
-    } else if (el.type == 'sign') {
+    } else if (el.type === 'sign') {
       addSign(el.name)
-    } else if (el.type == 'clearAll') {
+    } else if (el.type === 'clearAll') {
       clearAll()
-    } else if (el.type == 'clearLast') {
+    } else if (el.type === 'clearLast') {
       clearLast()
-    } else if (el.type == 'percent') {
+    } else if (el.type === 'percent') {
       setPercent()
-    } else if (el.type == 'dot') {
+    } else if (el.type === 'dot') {
       setDot()
-    } else if (el.type == 'answer') {
+    } else if (el.type === 'answer') {
       setAnswer()
     }
   }
