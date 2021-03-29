@@ -18,9 +18,6 @@ let InitialState = {
 //reducer
 const calculatorReducer = (state = InitialState, action) => {
   let answer = (n1, sign, n2) => {
-    console.log(n1.replace(/^\s+|\s+$/g, ''), n2.replace(/^\s+|\s+$/g, ''))
-    n1 = n1.replace(/^\s+|\s+$/g, '')
-    n2 = n2.replace(/^\s+|\s+$/g, '')
     let totalAnswer = ''
     if (n1 === '') {
       totalAnswer = 0
@@ -39,12 +36,14 @@ const calculatorReducer = (state = InitialState, action) => {
       }
     }
 
-    if (String(totalAnswer).includes('.')) {
-      if (String(totalAnswer).split('.')[1].length > 2) {
+    let stringenAnswer = String(totalAnswer)
+
+    if (stringenAnswer.includes('.')) {
+      if (stringenAnswer.split('.')[1].length > 2) {
         return String(totalAnswer.toFixed(2))
       };
     }
-    return String(totalAnswer)
+    return stringenAnswer
   }
   switch (action.type) {
     case ADD_NUMBER: {
