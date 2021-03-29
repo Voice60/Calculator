@@ -18,6 +18,7 @@ let InitialState = {
 //reducer
 const calculatorReducer = (state = InitialState, action) => {
   let answer = (n1, sign, n2) => {
+    console.log(n1.replace(/^\s+|\s+$/g, ''), n2.replace(/^\s+|\s+$/g, ''))
     n1 = n1.replace(/^\s+|\s+$/g, '')
     n2 = n2.replace(/^\s+|\s+$/g, '')
     let totalAnswer = ''
@@ -78,11 +79,14 @@ const calculatorReducer = (state = InitialState, action) => {
         }
       }
       else if (state.sign === null && state.number1 !== '') {
+        let newN1 = state.number1
+        state.number1.endsWith('.') && (newN1 = state.number1.slice(0, -1))
         return {
           ...state,
           sign: action.s,
-          example: state.example + action.s,
-          answer: answer(state.number1, action.s, '')
+          example: newN1 + action.s,
+          answer: answer(newN1, action.s, ''),
+          number1: newN1
         }
       } else if (state.sign !== null) {
         let answerN = answer(state.number1, state.sign, state.number2)
@@ -118,7 +122,7 @@ const calculatorReducer = (state = InitialState, action) => {
           example: state.example.slice(0, -1),
           answer: answer(state.number1, state.sign, state.number2)
         }
-      } else if (state.number1 !== '') {
+      } else  {
         let slicedNumber = state.number1.slice(0, -1)
         return {
           ...state,
@@ -126,8 +130,7 @@ const calculatorReducer = (state = InitialState, action) => {
           example: slicedNumber,
           answer: answer(slicedNumber, state.sign, state.number2)
         }
-      }
-      break
+      } 
     }
     case SET_PERCENT: {
       let totalNumber = String(answer(state.number1, state.sign, state.number2) / 100)
@@ -147,14 +150,31 @@ const calculatorReducer = (state = InitialState, action) => {
           number2: state.number2 + '.',
           example: state.example + '.'
         }
-      } else if (state.number1 !== '' && !state.number1.includes('.')) {
+      } else if (state.number1 !== '' && !state.number1.includes('.') && state.sign === null) {
         return {
           ...state,
           number1: state.number1 + '.',
           example: state.example + '.'
         }
+      } else if (state.number1 === '') {
+        return {
+          ...state,
+          number1: state.number1 + '0.',
+          example: state.example + '0.'
+        }
+      } else if (state.number2 === '' && state.sign !== null) {
+        return {
+          ...state,
+          number2: state.number2 + '0.',
+          example: state.example + '0.'
+        }
       }
-      break
+      
+      else {
+        return {
+          ...state
+        }
+      }
     }
     case SET_ANSWER: {
       let totalNumber = answer(state.number1, state.sign, state.number2)
