@@ -52,14 +52,16 @@ let Calculator = ({ example, answer, addNumber, addSign, clearAll, clearLast, se
   })
 
   return (
-    <div className={styles.calculator}>
-      <div className={styles.calcTop}>
-        <p className={styles.history}>{example}</p>
-        <p className={styles.answer}>{answer ? answer : 0}</p>
-      </div>
+    <div className={styles.container}>
+      <div className={styles.calculator}>
+        <div className={styles.calcTop}>
+          <p className={styles.history}>{example}</p>
+          <p className={styles.answer}>{answer ? answer : 0}</p>
+        </div>
 
-      <div className={styles.calcBottom}>
-        {calcButtons}
+        <div className={styles.calcBottom}>
+          {calcButtons}
+        </div>
       </div>
     </div>
   )

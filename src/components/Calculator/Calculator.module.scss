@@ -1,61 +1,128 @@
 @import '../../assets.scss';
 
-.calculator {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 600px;
-  box-shadow: 0px 4px 15px 6px rgba(0, 0, 0, 0.3);
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 580px;
+  width: 100%;
   margin: 0 auto;
-  background-color: $darkGray;
-  font-size: 1.375rem;
-  color: white;
 
-  .calcTop {
-    border-bottom: 3px solid $lightGray;
-    text-align: right;
-    padding: 10px;
-
-    .history {
-      margin-bottom: 10px;
-      min-height: 30px;
-    }
-
-    .answer {
-      font-size: 3rem;
-    }
+  @media (max-width: 600px) {
+    max-width: 540px;
   }
 
-  .calcBottom {
-    flex-grow: 1;
-    display: grid;
-    grid-template: repeat(5, 1fr) / repeat(4, 1fr);
+  @media (max-width: 550px) {
+    max-width: 480px;
+  }
 
-    &:last-child {
-      grid-row: 4 / 5;
+  @media (max-width: 500px) {
+    max-width: 380px;
+  }
+
+  @media (max-width: 400px) {
+    max-width: 300px;
+  }
+
+  .calculator {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0px 4px 15px 6px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    background-color: $darkGray;
+    font-size: 1.375rem;
+    color: white;
+
+    @media (max-width: 600px) {
+      font-size: 1rem;
     }
 
-    .itemWrap {
-      position: relative;
-      &:hover {
-        background-color: $lightGray;
+    @media (max-width: 500px) {
+      font-size: 0.75rem;
+    }
+
+    .calcTop {
+      border-bottom: 3px solid $lightGray;
+      text-align: right;
+      padding: 10px;
+      word-break: break-all;
+
+      .history {
+        margin-bottom: 10px;
+        min-height: 30px;
+      }
+
+      .answer {
+        font-size: 3rem;
+
+        @media (max-width: 600px) {
+          font-size: 2.5rem;
+        }
+
+        @media (max-width: 550px) {
+          font-size: 2.25rem;
+        }
+
+        @media (max-width: 500px) {
+          font-size: 1.875rem;
+        }
+
+        @media (max-width: 400px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .calcBottom {
+      flex-grow: 1;
+      display: grid;
+      grid-template: repeat(5, 1fr) / repeat(4, 1fr);
+      height: 725px;
+      font-size: 1.375rem;
+
+      @media (max-width: 600px) {
+        height: 675px;
+      }
+
+      @media (max-width: 550px) {
+        height: 600px;
+      }
+
+      @media (max-width: 500px) {
+        height: 475px;
+      }
+
+      @media (max-width: 400px) {
+        height: 375px;
+        font-size: 1.25rem;
       }
 
       &:last-child {
-        grid-column: 3 / 5;
+        grid-row: 4 / 5;
       }
 
-      .item {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        line-height: 100%;
-        user-select: none;
+      .itemWrap {
+        position: relative;
+
+        &:hover {
+          background-color: $lightGray;
+        }
+
+        &:last-child {
+          grid-column: 3 / 5;
+        }
+
+        .item {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          line-height: 100%;
+          user-select: none;
+        }
       }
-
-
     }
   }
-
 }
