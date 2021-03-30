@@ -1,52 +1,35 @@
 import React from 'react'
 import styles from './Calculator.module.scss'
 
-let Calculator = ({ example, answer, addNumber, addSign, clearAll, clearLast, setPercent, setDot, setAnswer }) => {
+const Calculator = ({ example, answer, addNumber, addSign, clearAll, clearLast, setPercent, setDot, setAnswer }) => {
 
-  const ButtonsObj = [
-    { name: 'AC', type: 'clearAll' },
-    { name: 'C', type: 'clearLast' },
-    { name: '%', type: 'percent' },
-    { name: '/', type: 'sign' },
-    { name: '7', type: 'number' },
-    { name: '8', type: 'number' },
-    { name: '9', type: 'number' },
-    { name: '*', type: 'sign' },
-    { name: '4', type: 'number' },
-    { name: '5', type: 'number' },
-    { name: '6', type: 'number' },
-    { name: '-', type: 'sign' },
-    { name: '1', type: 'number' },
-    { name: '2', type: 'number' },
-    { name: '3', type: 'number' },
-    { name: '+', type: 'sign' },
-    { name: '0', type: 'number' },
-    { name: ',', type: 'dot' },
-    { name: '=', type: 'answer' },
-  ]
+  const ButtonsObj = ['AC', 'C', '%', '/', '7', '8', '9', '*', '4',
+    '5', '6', '-', '1', '2', '3', '+', '0', '.', '=']
 
-  let handleOnClick = (el) => {
-    if (el.type === 'number') {
-      addNumber(el.name)
-    } else if (el.type === 'sign') {
-      addSign(el.name)
-    } else if (el.type === 'clearAll') {
+  const handleOnClick = (el) => {
+    if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(el)) {
+      addNumber(el)
+    } else if (['/', '*', '-', '+'].includes(el)) {
+      addSign(el)
+    } else if (el === 'AC') {
       clearAll()
-    } else if (el.type === 'clearLast') {
+    } else if (el === 'C') {
       clearLast()
-    } else if (el.type === 'percent') {
+    } else if (el === '%') {
       setPercent()
-    } else if (el.type === 'dot') {
+    } else if (el === '.') {
       setDot()
-    } else if (el.type === 'answer') {
+    } else if (el === '=') {
       setAnswer()
     }
   }
+  let id = 0
 
   const calcButtons = ButtonsObj.map((el) => {
+    id++
     return (
-      <div onClick={() => { handleOnClick(el) }} className={styles.itemWrap}>
-        <p className={styles.item}>{el.name}</p>
+      <div key={id} onClick={() => { handleOnClick(el) }} className={styles.itemWrap}>
+        <p className={styles.item}>{el}</p>
       </div>
     )
   })
@@ -58,7 +41,6 @@ let Calculator = ({ example, answer, addNumber, addSign, clearAll, clearLast, se
           <p className={styles.history}>{example}</p>
           <p className={styles.answer}>{answer ? answer : 0}</p>
         </div>
-
         <div className={styles.calcBottom}>
           {calcButtons}
         </div>

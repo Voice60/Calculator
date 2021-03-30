@@ -31,13 +31,11 @@ const calculatorReducer = (state = InitialState, action) => {
       totalAnswer = Number(n1) * Number(n2)
     } else if (sign === '/') {
       totalAnswer = Number(n1) / Number(n2)
-      if (Number.isNaN(totalAnswer)) {
+      if (!Number.isFinite(totalAnswer)) {
         totalAnswer = 0
       }
     }
-
     let stringenAnswer = String(totalAnswer)
-
     if (stringenAnswer.includes('.')) {
       if (stringenAnswer.split('.')[1].length > 2) {
         return String(totalAnswer.toFixed(2))
